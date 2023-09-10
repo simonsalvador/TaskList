@@ -31,3 +31,17 @@ function insertTask($title, $description, $priority) {
 
     return $db->lastInsertId();
 }
+
+function deleteTask($id) {
+    $db = getConection();
+
+    $query = $db->prepare('DELETE FROM tareas WHERE id = ?');
+    $query->execute([$id]);
+}
+
+function updateTask($id) {
+    $db = getConection();
+
+    $query = $db->prepare('UPDATE tareas SET finalizada = 1 WHERE id = ?');
+    $query->execute([$id]);
+}
